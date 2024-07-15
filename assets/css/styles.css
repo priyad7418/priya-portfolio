@@ -315,6 +315,15 @@ img {
 .skills__html {
   width: 95%;
 }
+.skills__python{
+  width:80%;
+}
+.skills__sql{
+  width:70%;
+}
+.skills__react{
+  width:75%;
+}
 .skills__css {
   width: 85%;
 }
