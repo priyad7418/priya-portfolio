@@ -11,8 +11,69 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <title>Portfolio</title>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+          </script>
     </head>
     <body>
+        <script type="module">
+              const firebaseConfig = {
+              apiKey: "AIzaSyAER6LWpxaaruPyPdO0mR7DvlTMiEN7ZjY",
+              authDomain: "portfolio-bd11e.firebaseapp.com",
+              projectId: "portfolio-bd11e",
+              storageBucket: "portfolio-bd11e.appspot.com",
+              messagingSenderId: "1023725173367",
+              appId: "1:1023725173367:web:65cfe69d88c7c494b9e472",
+              measurementId: "G-4D6ZNSBPVW"
+            };
+            import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+          
+            // Listen for form submit
+            document.getElementById('contactForm').addEventListener('submit', submitForm);
+          
+            // Function to handle form submission
+            function submitForm(e) {
+              e.preventDefault();
+          
+              // Get values from the form
+              const name = document.getElementById('name').value;
+              const email = document.getElementById('email').value;
+              const message = document.getElementById('message').value;
+          
+              // Save the message to Firebase
+              saveMessage(name, email, message);
+          
+              // Clear the form after submission
+              document.getElementById('contactForm').reset();
+          
+              // Optionally, show a success alert to the user
+              alert('Message Sent Successfully!');
+            }
+          
+            // Function to save message to Firebase Realtime Database
+            function saveMessage(name, email, message) {
+              const db = getDatabase();
+              const newMessageRef = ref(db, 'messages/' + Date.now()); // Use a timestamp as a unique key
+              set(newMessageRef, {
+                name: name,
+                email: email,
+                message: message
+              });
+            }
+          </script>
+          
         <!--===== HEADER =====-->
         <header class="l-header">
             <nav class="nav bd-grid">
@@ -281,9 +342,9 @@
 
                 <div class="contact__container bd-grid">
                     <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                        <input type="text" placeholder="Name" class="contact__input" id="name">
+                        <input type="mail" placeholder="Email" class="contact__input" id="email">
+                        <textarea name="" id="message" cols="0" rows="10" class="contact__input"></textarea>
                         <input type="button" value="submit" class="contact__button button">
                     </form>
                 </div>
@@ -295,20 +356,20 @@
             <div class="footer-con">
             <div class="footer__links" value="">
                 
-                <h2>Quick Links</h2>
+                <h3>Quick Links</h3>
                 <a href="#home" class="footer__link"> > Home</a>
                 <a href="#about" class="footer__link">> About</a>
                 <a href="#skills" class="footer__link">> Skills</a>
                 <a href="#contact" class="footer__link">> Contact</a>
             </div>
-            <div class="footer__contact">
+         <!---  <div class="footer__contact">
                 <h2>Contact</h2>
                  <a href="mailto:pd923738@gmail.com" class="footer__contact-link"><i class="fa-solid fa-envelope"></i> pd923738@gmail.com</a>
-                 <a href="7418130494" class="footer__contact-link"><i class="fa-sharp fa-solid fa-phone"></i> 7418130494</a>
+                <a href="7418130494" class="footer__contact-link"><i class="fa-sharp fa-solid fa-phone"></i> 7418130494</a>
                  <a href="7418130494" class="footer__contact-link"><i class="fa-solid fa-location-dot"></i> chennai</a>
-            </div>
+            </div> -->
             <div class="footer__social">
-                <h2>Social media</h2>
+                <h3>Social media</h3>
                 <a href="linkedin.com/in/priya-dharshini-251176226" class="footer__icon"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://x.com/home" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
                 <a href="https://github.com/priyad7418" class="footer__icon"><i class='bx bxl-github' ></i></a>
